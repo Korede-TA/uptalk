@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+message Chat {
+	string name = 1;
+	repeated User members = 4;
+	repeated Message messages = 3;
+}
+
+message Message {
+	string text = 1;	
+	User author = 3;
+}
+
+message User {
+	string name = 1;
+}
