@@ -1,16 +1,30 @@
 syntax = "proto3";
 
+message Inbox {
+	repeated Message messages = 1;
+	repeated Invite invites = 2;
+}
+
 message Chat {
 	string name = 1;
+	User owner = 5;
 	repeated User members = 4;
+	repeated User invitees = 6;
 	repeated Message messages = 3;
 }
 
 message Message {
 	string text = 1;	
 	User author = 3;
+	int64 timestamp = 4;  // Using milliseconds since the epoch
 }
 
 message User {
-	string name = 1;
+	string username = 2;  // Upspin Id
+}
+
+message Invite {
+	string text = 1;
+	User from = 2;
+	User to = 3;
 }
