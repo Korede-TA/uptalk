@@ -12,21 +12,21 @@ The general layout of said directory would be something like this:
 uptalk/
 +--my_chats/
 |  +--<chat_hash>/
-|	|	+--Access  # Access file containing names of members of a chat
-|	|	+--messages/
-|	|	|	+--<msg_timestamp>.pb 
-|	|	|	|	...
-|	|	|	media/
-|	|	|	+--<media_file>
-|	|	|	|	...
-|	|	...
-|	other_chats/
-|	|	<chat_owner>_<chat_hash>
-|	|	...
+|  |  +--Access  # Access file containing names of members of a chat
+|  |  +--messages/
+|  |  |  +--<msg_timestamp>.pb 
+|  |  |  |  ...
+|  |  |  media/
+|  |  |  +--<media_file>
+|  |  |  |  ...
+|  |  ...
+|  other_chats/
+|  |  <chat_owner>_<chat_hash>
+|  |  ...
 |  invites/
-|	+--Access  # Access file that allows writes (facilitated by uptalk) from everyone, 
-|	+--<invite_timestamp>.pb
-|	|	...
+|  +--Access  # Access file that allows writes (facilitated by uptalk) from everyone, 
+|  +--<invite_timestamp>.pb
+|  |  ...
 ```
 
 Each chat will reside solely in the Uptalk directory of the initiating user, and will not be duplicated into other directories.
