@@ -6,8 +6,27 @@ import (
 	"upspin.io/upbox"
 )
 
-const testUpboxConfig = "test.yml"
+// Upbox package provides utils to set up testing environment for Upspin
+const testUpboxConfig = "upbox.yml"
+
+var sch *upbox.Schema
+
 const testFileName = "test.pb"
+
+func setup() {
+	var err error
+	sch, err = upbox.SchemaFromFile(testUpboxConfig)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func teardown() {
+	err := sch.Stop()
+	if err != nil {
+		panic(err)
+	}
+}
 
 var testFile = os.Create(testFileName)
 

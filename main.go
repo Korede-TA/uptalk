@@ -14,6 +14,7 @@ func main() {
 
 	command := os.Args[1]
 	user := os.Getenv("UPSPINUSR")
+	dir := os.Getenv("UPSPINDIR")
 	usage := `
 	Uptalk Usage:
 	`
@@ -42,13 +43,13 @@ func main() {
 				"Owner: %s, Members: %v, Hash: %v\n",
 				user,
 				members,
-				chat.GetHash().String(),
+				chat.Hash(),
 			)
 		}
 		break
 
 	// not sure if this functionality will end up existing
-	// just seems extraneous
+	// just seems extraneous (pretty much the same as accept invite)
 	case "join-chat":
 		var members []string
 		for i := 1; i < len(os.Args); i++ {
@@ -67,12 +68,20 @@ func main() {
 		uptalk.SendInvite(invitees...)
 		break
 
+	case "list-invites":
+		break
+
+	case "accept-invites":
+		// join-chat and accept invite might be the same exact thing
+		break
+
 	case "send-message":
 		chatHash := os.Args[2]
+		owner := os.Args[3]
 		// messages are plain text. Could potentially take more standard
 		// formats in the future (markdown?)
-		message := os.Args[3]
-		uptalk.SendMessage(chatHash, message)
+		message := os.Args[4]
+		uptalk.SendMessage(chatHash, owner, user, message)
 		break
 
 	case "send-media":
